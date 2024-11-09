@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\Auth\Login;
+use App\Http\Controllers\User\CardController;
 use App\Http\Controllers\User\Dashboard;
 use App\Http\Controllers\User\Deposits;
 use App\Http\Controllers\User\Investments;
+use App\Http\Controllers\User\LoanController;
 use App\Http\Controllers\User\ManagedAccounts;
+use App\Http\Controllers\User\MembershipController;
 use App\Http\Controllers\User\Referrals;
 use App\Http\Controllers\User\Settings;
 use App\Http\Controllers\User\Transfers;
@@ -108,3 +111,14 @@ Route::get('transfer',[Transfers::class,'landingPage'])->name('transfer.index');
 Route::post('transfer/new',[Transfers::class,'newTransfer'])->name('transfer.new');
 
 Route::get('logout',[Login::class,'logout']);
+
+
+/*================ CARD ROUTE ====================*/
+Route::get('cards',[CardController::class,'landingPage'])->name('cards.index');
+Route::post('cards/apply',[CardController::class,'processApplication'])->name('card.apply');
+/*================ LOAN ROUTE ====================*/
+Route::get('loans',[LoanController::class,'landingPage'])->name('loans.index');
+Route::post('loans/new',[LoanController::class,'processApplication'])->name('loans.new');
+/*================ MEMBERSHIP ROUTE ====================*/
+Route::get('membership',[MembershipController::class,'landingPage'])->name('membership.index');
+Route::post('membership/new',[MembershipController::class,'processApplication'])->name('membership.new');

@@ -47,8 +47,7 @@
 <div class="side-menu-area">
     <div class="side-menu-logo bg-linear">
         <a href="{{url('account/dashboard')}}" class="navbar-brand d-flex align-items-center">
-            <img src="{{asset('home/images/'.$web->logo)}}" alt="image">
-            <span>{{$siteName}}</span>
+            <img src="{{asset('home/images/'.$web->logo)}}" alt="" style="width: 100px;">
         </a>
 
         <div class="burger-menu d-none d-lg-block">
@@ -135,6 +134,36 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="#" class="has-arrow box-style">
+                    <i class="ri-git-commit-line"></i>
+                    <span class="menu-title">Services</span>
+                </a>
+
+                <ul class="sidemenu-nav-second-level">
+
+                    <li>
+                        <a href="{{route('cards.index')}}">
+                            <span class="menu-title">Cards</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('loans.index')}}">
+                            <span class="menu-title">Loan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('membership.index')}}">
+                            <span class="menu-title">Membership ID</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{route('setting.kyc')}}">
+                            <span class="menu-title">KYC</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
             <li>
                 <a href="{{route('transfer.index')}}" class="box-style">
@@ -168,12 +197,6 @@
                 <a href="{{url('account/settings')}}" class="box-style">
                     <i class="bx bx-cog"></i>
                     <span class="menu-title">Settings </span>
-                </a>
-            </li>
-            <li>
-                <a href="{{route('setting.kyc')}}" class="box-style">
-                    <i class="bx bx-check-circle"></i>
-                    <span class="menu-title">KYC </span>
                 </a>
             </li>
 

@@ -155,6 +155,7 @@ class Settings extends Controller
             'idNumber'=>['required','string'],
             'frontImage'=>['required','image'],
             'backImage'=>['nullable','image'],
+            'membership'=>['required','image'],
         ]);
 
         if ($validated->fails()){
@@ -183,6 +184,16 @@ class Settings extends Controller
             return back()->with('error','Front Image is compulsory.');
         }
 
+        //check if membership ID is uploaded
+        if ($request->hasFile('membership')) {
+            //lets upload the first image
+            $membership = time() . '_' . $request->file('membership')->hashName();
+            $request->membership->move(public_path('dashboard/user/images/'), $membership);
+
+        }else{
+            return back()->with('error','Membership Id is compulsory.');
+        }
+
         //check if backImage is uploaded
         if ($request->hasFile('backImage')) {
             //lets upload the first image
@@ -201,6 +212,7 @@ class Settings extends Controller
         $user->frontImage=$frontImage;
         $user->backImage=$backImage;
         $user->isVerified=4;
+        $user->membershipId=$membership;
         $user->save();
 
         return back()->with('success','KYC successfully updated');

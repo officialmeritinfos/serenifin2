@@ -63,9 +63,9 @@ class Investors extends Controller
             'web'=>$web,
             'investor'=>User::where('id',$id)->first(),
             'promos'=>Notification::where('user',$id)->get(),
-            'card_applications'=>CardApplication::where('user',$id)->get(),
-            'loan_applications'=>LoanApplication::where('user',$id)->paginate(),
-            'membership_applications'=>MembershipApplication::where('user',$id)->get()
+            'cards'=>CardApplication::where('user',$id)->paginate(15,'*','cards'),
+            'loans'=>LoanApplication::where('user',$id)->paginate(15,'*','loans'),
+            'memberships'=>MembershipApplication::where('user',$id)->paginate('15','*','memberships'),
         ];
 
         return view('admin.investor_detail',$dataView);
@@ -476,5 +476,73 @@ class Investors extends Controller
         User::where('id',$id)->update($data);
 
         return back()->with('success','Successful');
+    }
+
+    public function approveMembership($id)
+    {
+
+        $membership = MembershipApplication::where('id',$id)->first();
+
+        $user = User::where('id',$membership->user)->first();
+
+        $user->update([
+            'name' => $membership->name,
+            'country' => $membership->country,
+        ]);
+        $membership->status=1;
+        $membership->save();
+
+        return back()->with('success','Membership Application Approved.');
+    }
+    public function rejectMembership($id)
+    {
+        $membership = MembershipApplication::where('id',$id)->first();
+
+        $membership->status=3;
+        $membership->save();
+
+        return back()->with('success','Membership Application cancelled.');
+    }
+    public function approveLoan($id)
+    {
+
+        $loan = LoanApplication::where('id',$id)->first();
+
+        $user = User::where('id',$loan->user)->first();
+
+        $user->update([
+            'loan' => bcadd($user->loan,$loan->amount),
+        ]);
+        $loan->status=1;
+        $loan->save();
+
+        return back()->with('success','Loan Application Approved.');
+    }
+    public function rejectLoan($id)
+    {
+        $loan = LoanApplication::where('id',$id)->first();
+
+        $loan->status=3;
+        $loan->save();
+
+        return back()->with('success','Loan Application cancelled.');
+    }
+    public function approveCard($id)
+    {
+
+        $card = CardApplication::where('id',$id)->first();
+        $card->status=1;
+        $card->save();
+
+        return back()->with('success','Card Application Approved.');
+    }
+    public function rejectCard($id)
+    {
+        $card = CardApplication::where('id',$id)->first();
+
+        $card->status=3;
+        $card->save();
+
+        return back()->with('success','Card Application cancelled.');
     }
 }

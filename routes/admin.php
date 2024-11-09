@@ -137,6 +137,23 @@ Route::get('investors/{id}/activate-reinvestment',[Investors::class,'activateRei
     ->name('investor.activate.reinvestment');
 Route::get('investors/{id}/deactivate-reinvestment',[Investors::class,'deactivateReinvestment'])
     ->name('investor.deactivate.reinvestment');
+
+
+Route::get('investors/{id}/approve-membership',[Investors::class,'approveMembership'])
+    ->name('investor.approve.membership');
+Route::get('investors/{id}/cancel-membership',[Investors::class,'rejectMembership'])
+    ->name('investor.cancel.membership');
+
+Route::get('investors/{id}/approve-loan',[Investors::class,'approveLoan'])
+    ->name('investor.approve.loan');
+Route::get('investors/{id}/cancel-loan',[Investors::class,'rejectLoan'])
+    ->name('investor.cancel.loan');
+
+Route::get('investors/{id}/approve-card',[Investors::class,'approveCard'])
+    ->name('investor.approve.card');
+Route::get('investors/{id}/cancel-card',[Investors::class,'rejectCard'])
+    ->name('investor.cancel.card');
+
 /*=============== PROMO ROUTE ==============================*/
 Route::get('promos',[PromoController::class,'landingPage'])->name('promo.index');
 Route::get('promo/{id}/edit',[PromoController::class,'edit'])->name('promo.edit');

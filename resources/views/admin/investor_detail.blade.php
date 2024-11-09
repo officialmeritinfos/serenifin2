@@ -90,6 +90,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Account Balance</th>
+                                <th scope="col">Loan Balance</th>
                                 <th scope="col">Withdrawals</th>
                                 <th scope="col">Referral Balance</th>
                                 <th scope="col">Bonus</th>
@@ -105,6 +106,7 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>${{number_format($investor->balance,2)}}</td>
+                                <td>${{number_format($investor->loan,2)}}</td>
                                 <td>${{number_format($investor->withdrawals,2)}}</td>
                                 <td>${{number_format($investor->refBal,2)}}</td>
                                 <td>${{number_format($investor->bonus,2)}}</td>
@@ -164,6 +166,7 @@
                                 <th scope="col">ID Image(front)</th>
                                 <th scope="col">ID Image(back)</th>
                                 <th scope="col">Selfie</th>
+                                <th scope="col">Membership ID</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -179,6 +182,9 @@
                                 </td>
                                 <td>
                                     <img src="{{asset('dashboard/user/images/'.$investor->selfie)}}" style="width: 120px;"/>
+                                </td>
+                                <td>
+                                    <img src="{{asset('dashboard/user/images/'.$investor->membershipId)}}" style="width: 120px;"/>
                                 </td>
 
                             </tr>
@@ -284,13 +290,13 @@
                             </div>
                         </div>
                     </div>
-                    
-                    
+
+
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- DataTales Example -->
     <div class="card shadow mb-4 mt-4">
         <div class="card-header py-3">
@@ -344,7 +350,188 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 mt-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Membership ID Application</h6>
+        </div>
+        <div class="card-body">
+            @include('templates.notification')
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th> Country</th>
+                        <th> State/Region</th>
+                        <th> Address</th>
+                        <th>Date Initiated</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($memberships as $member)
+                        <tr>
+                            <td>{{$member->reference}}</td>
+                            <td>{{$member->name}}</td>
+                            <td>{{$member->country}}</td>
+                            <td>{{$member->state}}</td>
+                            <td>{{$member->address}}</td>
+                            <td>{{$member->created_at}}</td>
+                            <td>
+                                @switch($member->status)
+                                    @case(1)
+                                        <span class="text-success">Active</span>
+                                        @break
+                                    @case(2)
+                                        <span class="text-info">Pending</span>
+                                        @break
+                                    @case(3)
+                                        <span class="text-danger">Cancelled</span>
+                                        @break
+                                @endswitch
+                            </td>
+                            <td>
+                                <a href="{{route('admin.investor.approve.membership',['id'=>$member->id])}}"
+                                   class="btn btn-primary" style="margin-bottom: 5px;">
+                                    <i class=""></i> Approve
+                                </a>
+                                <a href="{{route('admin.investor.cancel.membership',['id'=>$member->id])}}"
+                                   class="btn btn-danger">
+                                    <i class=""></i> Cancel
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+                </table>
+                {{$memberships->links()}}
+            </div>
+        </div>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 mt-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Loan Applications</h6>
+        </div>
+        <div class="card-body">
+            @include('templates.notification')
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Reference</th>
+                        <th>Amount</th>
+                        <th>Loan Type</th>
+                        <th>Date Requested</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($loans as $loan)
+                        <tr>
+                            <td>{{$loan->reference}}</td>
+                            <td>{{$loan->amount}}</td>
+                            <td>{{$loan->loanType}}</td>
+                            <td>{{$loan->created_at}}</td>
+                            <td>
+                                @switch($loan->status)
+                                    @case(1)
+                                        <span class="text-success">Active</span>
+                                        @break
+                                    @case(2)
+                                        <span class="text-info">Pending</span>
+                                        @break
+                                    @case(3)
+                                        <span class="text-danger">Cancelled</span>
+                                        @break
+                                @endswitch
+                            </td>
+                            <td>
+                                <a href="{{route('admin.investor.approve.loan',['id'=>$loan->id])}}"
+                                   class="btn btn-primary" style="margin-bottom: 5px;">
+                                    <i class=""></i> Approve
+                                </a>
+                                <a href="{{route('admin.investor.cancel.loan',['id'=>$loan->id])}}"
+                                   class="btn btn-danger">
+                                    <i class=""></i> Cancel
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                {{$loans->links()}}
+            </div>
+        </div>
+    </div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4 mt-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Card Applications</h6>
+        </div>
+        <div class="card-body">
+            @include('templates.notification')
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>Reference</th>
+                        <th>Delivery Address</th>
+                        <th>Name on Card</th>
+                        <th>Card Type</th>
+                        <th>Date Initiated</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($cards as $card)
+                        <tr>
+                            <td>{{$card->reference}}</td>
+                            <td>{{$card->address}}</td>
+                            <td>{{$card->name}}</td>
+                            <td>{{$card->cardType}}</td>
+                            <td>{{$card->created_at}}</td>
+                            <td>
+                                @switch($card->status)
+                                    @case(1)
+                                        <span class="text-success">Active</span>
+                                        @break
+                                    @case(2)
+                                        <span class="text-info">Pending</span>
+                                        @break
+                                    @case(3)
+                                        <span class="text-danger">Cancelled</span>
+                                        @break
+                                @endswitch
+                            </td>
+                            <td>
+                                <a href="{{route('admin.investor.approve.card',['id'=>$card->id])}}"
+                                   class="btn btn-primary" style="margin-bottom: 5px;">
+                                    <i class=""></i> Approve
+                                </a>
+                                <a href="{{route('admin.investor.cancel.card',['id'=>$card->id])}}"
+                                   class="btn btn-danger">
+                                    <i class=""></i> Cancel
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                {{$cards->links()}}
+            </div>
+        </div>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="notify">
         <div class="modal-dialog modal-dialog-centered" role="document">

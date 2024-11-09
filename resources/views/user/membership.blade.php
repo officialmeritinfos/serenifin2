@@ -59,7 +59,6 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>Reference</th>
                         <th>Name</th>
                         <th> Country</th>
                         <th> State/Region</th>
@@ -71,7 +70,6 @@
                     <tbody>
                     @foreach($members as $member)
                         <tr>
-                            <td>{{$member->reference}}</td>
                             <td>{{$member->name}}</td>
                             <td>{{$member->country}}</td>
                             <td>{{$member->state}}</td>
@@ -95,7 +93,6 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th>Reference</th>
                         <th>Name</th>
                         <th> Country</th>
                         <th> State/Region</th>

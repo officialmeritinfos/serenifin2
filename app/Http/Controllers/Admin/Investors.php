@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SendInvestmentNotification;
+use App\Models\CardApplication;
 use App\Models\GeneralSetting;
+use App\Models\LoanApplication;
+use App\Models\MembershipApplication;
 use App\Models\Package;
 use App\Models\User;
 use App\Notifications\InvestmentMail;
@@ -59,7 +62,10 @@ class Investors extends Controller
             'user'     =>  $user,
             'web'=>$web,
             'investor'=>User::where('id',$id)->first(),
-            'promos'=>Notification::where('user',$id)->get()
+            'promos'=>Notification::where('user',$id)->get(),
+            'card_applications'=>CardApplication::where('user',$id)->get(),
+            'loan_applications'=>LoanApplication::where('user',$id)->paginate(),
+            'membership_applications'=>MembershipApplication::where('user',$id)->get()
         ];
 
         return view('admin.investor_detail',$dataView);

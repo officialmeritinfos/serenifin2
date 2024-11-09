@@ -52,6 +52,11 @@
                                    value="{{$package->numberOfReturns}}" name="numberOfReturns">
                         </div>
                         <div class="form-group col-md-6">
+                            <label for="inputAddress">Referral Bonus(%)</label>
+                            <input type="number" step="0.01" class="form-control" id="inputAddress"
+                                   name="referral" value="{{$package->referral}}">
+                        </div>
+                        <div class="form-group col-md-6">
                             <label for="inputAddress">Return Type</label>
                             <select type="text" class="form-control" id="inputAddress"
                                     name="returnType">
@@ -62,7 +67,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="inputAddress">Status</label>
                             <select type="text" class="form-control" id="inputAddress"
                                     name="status">

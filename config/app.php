@@ -27,6 +27,8 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'companyLicence' => env('COMPANY_LICENSE', '377 Evans Ave. Unit 101, Etobicoke, ON M8Z 1K8, Canada'),
+    'companyAddress' => env('COMPANY_ADDRESS', '07051271'),
 
     /*
     |--------------------------------------------------------------------------

@@ -25,7 +25,7 @@
         </div>
     </div>
 @endforeach
-    
+
 
     <div class="today-card-area pt-24" style="margin-top:-3rem;">
         <div class="container-fluid">
@@ -41,7 +41,7 @@
                          <a href="{{route('new_withdrawal')}}" class="btn btn-primary rounded-pill">Withdraw</a>
                     </div>
                 </div>
-                
+
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-3 col-sm-6">
@@ -134,7 +134,7 @@
                     </div>
                 </div>
 
-                
+
 
 
                 <!--<div class="col-lg-3 col-sm-6">-->
@@ -180,6 +180,52 @@
         </div>
     </div>
 
+    <div class="overview-area mb-4 mb-4">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- TradingView Widget BEGIN -->
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
+                            {
+                                "width": "100%",
+                                "height": 600,
+                                "currencies": [
+                                "EUR",
+                                "USD",
+                                "JPY",
+                                "GBP",
+                                "CHF",
+                                "AUD",
+                                "CAD",
+                                "NZD",
+                                "CNY",
+                                "TRY",
+                                "SEK",
+                                "NOK",
+                                "DKK",
+                                "ZAR",
+                                "HKD",
+                                "SGD",
+                                "THB",
+                                "MXN",
+                                "IDR"
+                            ],
+                                "isTransparent": false,
+                                "colorTheme": "dark",
+                                "locale": "en",
+                                "backgroundColor": "#000000"
+                            }
+                        </script>
+                    </div>
+                    <!-- TradingView Widget END -->
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div class="overview-area">
         <div class="container-fluid">
             <div class="row">

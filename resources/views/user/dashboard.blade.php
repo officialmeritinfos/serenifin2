@@ -56,6 +56,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-today-card d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <span class="today">Bonus Balance</span>
+                            <h6>${{number_format($user->bonus,2)}}</h6>
+                        </div>
+
+                        <div class="flex-shrink-0 align-self-center">
+                            <img src="{{asset('dashboard/user/images/icon/user.png')}}" alt="Images">
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-3 col-sm-6 col-md-3">
                     <div class="active-single-item single-today-card d-flex align-items-center">
                         <div class="flex-grow-1">

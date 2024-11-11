@@ -77,18 +77,28 @@ class Withdrawals extends Controller
                 $newBalance = [
                     'profit'=>$balance- $input['amount']
                 ];
+                $source = "Profit";
                 break;
             case 2:
                 $balance = $user->refBal;
                 $newBalance = [
                     'refBal'=>$balance- $input['amount']
                 ];
+                $source = "Referral";
+                break;
+            case 3:
+                $balance = $user->bonus;
+                $newBalance = [
+                    'bonus'=>$balance- $input['amount']
+                ];
+                $source = "Bonus";
                 break;
             default:
                 $balance = $user->balance;
                 $newBalance = [
                     'balance'=>$balance- $input['amount']
                 ];
+                $source = "Account";
                 break;
         }
         if ($balance < $input['amount']){
@@ -97,7 +107,7 @@ class Withdrawals extends Controller
         $ref = $this->generateId('withdrawals','reference',10);
         $data=[
             'user'=>$user->id,'reference'=>$ref,'amount'=>$input['amount'],'asset'=>$input['asset'],
-            'details'=>$input['wallet']
+            'details'=>$input['wallet'],'source'=>$source
         ];
 
         $withdrawal = Withdrawal::create($data);

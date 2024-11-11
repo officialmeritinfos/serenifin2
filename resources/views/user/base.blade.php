@@ -239,9 +239,7 @@
 
                 <ul class="navbar-nav ms-auto mb-lg-0">
                     <li class="nav-item">
-                        <a href="#" class="nav-link ri-fullscreen-btn" id="fullscreen-button">
-                            <i class="ri-fullscreen-line"></i>
-                        </a>
+                        <div id="google_translate_element"></div>
                     </li>
 
 
@@ -346,6 +344,12 @@
 </div>
 <!-- End Go Top Area -->
 
+<script type="text/javascript">
+    window.onload = function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <!-- Jquery Min JS -->
 <script src="{{asset('dashboard/user/js/jquery.min.js')}}"></script>
 <!-- Bootstrap Bundle Min JS -->

@@ -18,6 +18,7 @@
                         <th>Amount</th>
                         <th>Address</th>
                         <th>Asset</th>
+                        <th>Source</th>
                         <th>Date Requested</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -32,6 +33,7 @@
                             <td>{{number_format($withdrawal->amount,2)}}</td>
                             <td>{{$withdrawal->details}}</td>
                             <td>{{$withdrawal->asset}}</td>
+                            <td>{{$withdrawal->source??'N/A'}}</td>
                             <td>{{$withdrawal->created_at}}</td>
                             <td>
                                 @switch($withdrawal->status)
@@ -67,6 +69,7 @@
                         <th>Amount</th>
                         <th>Address</th>
                         <th>Asset</th>
+                        <th>Source</th>
                         <th>Date Requested</th>
                         <th>Status</th>
                         <th>Action</th>

@@ -508,7 +508,7 @@
                         @foreach($deposits as $deposit)
                             @inject('option','App\Defaults\Custom')
                             <tr>
-                                <td>{{$option->getInvestor($deposit->user)}}</td>
+                                <td>{{$option->getInvestorUsername($deposit->user)}}</td>
                                 <td>${{number_format($deposit->amount,2)}}</td>
                             </tr>
                         @endforeach
@@ -531,7 +531,7 @@
                         @foreach($withdrawals as $withdrawal)
                             @inject('option','App\Defaults\Custom')
                             <tr>
-                                <td>{{$option->getInvestor($withdrawal->user)}}</td>
+                                <td>{{$option->getInvestorUsername($withdrawal->user)}}</td>
                                 <td>${{number_format($withdrawal->amount,2)}}</td>
                             </tr>
                         @endforeach

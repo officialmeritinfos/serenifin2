@@ -12,21 +12,27 @@ use App\Models\Service;
 use App\Models\Withdrawal;
 use App\Notifications\InvestmentMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request  $request)
     {
         $web = GeneralSetting::where('id',1)->first();
+
+        //check if the referral is stored
+        if (!Cache::has('referral')){
+            Cache::put('referral',$request->get('referral'),now()->addDays(7));
+        }
 
         $dataView = [
             'siteName'  => $web->name,
             'web'       => $web,
             'pageName'  => 'Home Page',
             'packages'  => Package::where('status',1)->get(),
-            'deposits'=>Investment::where('status','1')->orWhere('status','4')->orderBy('id','desc')->limit(10)->get(),
-            'withdrawals'=>Withdrawal::where('status','!=',3)->orderBy('id','desc')->limit(10)->get(),
+            'deposits'=>Investment::where('status','1')->orWhere('status','4')->orderBy('id','desc')->limit(5)->get(),
+            'withdrawals'=>Withdrawal::where('status','!=',3)->orderBy('id','desc')->limit(5)->get(),
             'services'  =>Service::where('status',1)->get(),
             'sectors'  =>Service::where('status',1)->where('isSector',1)->get()
         ];

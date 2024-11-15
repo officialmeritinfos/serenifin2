@@ -13,6 +13,7 @@ use App\Notifications\EmailVerifyMail;
 use App\Notifications\InvestmentMail;
 use App\Notifications\WelcomeMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 
 class Register extends Controller
@@ -25,7 +26,7 @@ class Register extends Controller
             'web'=>$web,
             'siteName'=>$web->name,
             'pageName'=>'Account Registration',
-            'referral'=>$request->get('referral')
+            'referral'=>Cache::get('referral')??'',
         ];
 
         return view('auth.register',$dataView);

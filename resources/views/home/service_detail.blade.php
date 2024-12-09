@@ -1,37 +1,60 @@
 @extends('home.base')
 @section('content')
-    <!-- Start Page-title Area -->
-    <div class="page-title-area bg-black">
+    <!--Page Header Start-->
+    <section class="page-header">
+        <div class="page-header__bg" style="background-image: url({{asset('home/images/backgrounds/page-header-bg.jpg')}}');">
+        </div>
+        <div class="page-header__shape-one float-bob-x-2"></div>
+        <div class="page-header__shape-2 float-bob-y">
+            <img src="{{asset('home/images/shapes/page-header-shape-2.png')}}" alt="">
+        </div>
+        <div class="page-header__shape-3 float-bob-x">
+            <img src="{{asset('home/images/shapes/page-header-shape-3.png')}}" alt="">
+        </div>
+        <div class="page-header__shape-4 float-bob-y">
+            <img src="{{asset('home/images/shapes/page-header-shape-4.png')}}" alt="">
+        </div>
         <div class="container">
-            <div class="page-title-content">
-                <h2>{{$pageName}}</h2>
-                <ul>
+            <div class="page-header__inner text-left">
+                <ul class="thm-breadcrumb list-unstyled">
                     <li><a href="{{url('/')}}">Home</a></li>
                     <li>{{$pageName}}</li>
                 </ul>
+                <h2>{{$pageName}}</h2>
             </div>
         </div>
-    </div>
-    <!-- End Page-title Area -->
+    </section>
+    <!--Page Header End-->
 
-    <!-- Start Services Details Area -->
-    <div class="services-details-area ptb-100">
+    <!--Project Details Start-->
+    <section class="project-details">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12">
-                    <div class="services-details-desc">
-                        <h3>{{$service->title}}</h3>
-                        <p>{{$service->short}}</p>
-                        <img src="{{asset('home/serv/'.$service->photo)}}" alt="image">
-                        <p>
-                            {!! str_replace('MYSITE',$siteName,$service->content) !!}
-                        </p>
+            <div class="project-details__top">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="project-details__img">
+                            <img src="{{asset('home/serv/'.$service->photo)}}" alt="">
+                        </div>
                     </div>
                 </div>
-
-
             </div>
+            <div class="project-details__bottom">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="project-details__right">
+                            <div class="project-details__title-box">
+                                <h3 class="project-details__title-two">{{ $service->title }}</h3>
+                                <p class="project-details__text">
+                                    {!! str_replace('MYSITE',$siteName,$service->content) !!}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </section>
+
 
 @endsection

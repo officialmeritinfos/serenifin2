@@ -1,18 +1,30 @@
 @extends('home.base')
 @section('content')
-    <!-- Start Page-title Area -->
-    <div class="page-title-area bg-black">
+    <!--Page Header Start-->
+    <section class="page-header">
+        <div class="page-header__bg" style="background-image: url({{asset('home/images/backgrounds/page-header-bg.jpg')}}');">
+        </div>
+        <div class="page-header__shape-one float-bob-x-2"></div>
+        <div class="page-header__shape-2 float-bob-y">
+            <img src="{{asset('home/images/shapes/page-header-shape-2.png')}}" alt="">
+        </div>
+        <div class="page-header__shape-3 float-bob-x">
+            <img src="{{asset('home/images/shapes/page-header-shape-3.png')}}" alt="">
+        </div>
+        <div class="page-header__shape-4 float-bob-y">
+            <img src="{{asset('home/images/shapes/page-header-shape-4.png')}}" alt="">
+        </div>
         <div class="container">
-            <div class="page-title-content">
-                <h2>{{$pageName}}</h2>
-                <ul>
+            <div class="page-header__inner text-left">
+                <ul class="thm-breadcrumb list-unstyled">
                     <li><a href="{{url('/')}}">Home</a></li>
                     <li>{{$pageName}}</li>
                 </ul>
+                <h2>{{$pageName}}</h2>
             </div>
         </div>
-    </div>
-    <!-- End Page-title Area -->
+    </section>
+    <!--Page Header End-->
 
 
     <!--About One Start-->

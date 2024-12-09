@@ -90,6 +90,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Account Balance</th>
+                                <th scope="col">Profit Balance</th>
                                 <th scope="col">Loan Balance</th>
                                 <th scope="col">Withdrawals</th>
                                 <th scope="col">Referral Balance</th>
@@ -106,6 +107,7 @@
                             <tr>
                                 <th scope="row">1</th>
                                 <td>${{number_format($investor->balance,2)}}</td>
+                                <td>${{number_format($investor->profit,2)}}</td>
                                 <td>${{number_format($investor->loan,2)}}</td>
                                 <td>${{number_format($investor->withdrawals,2)}}</td>
                                 <td>${{number_format($investor->refBal,2)}}</td>
@@ -239,6 +241,9 @@
 
                                 <a href="{{route('admin.investor.unverify.user',['id'=>$investor->id])}}"
                                    class="btn btn-info">Reject KYC</a>
+
+                                <a href="{{route('admin.investor.unverify.user',['id'=>$investor->id])}}"
+                                   class="btn btn-danger mt-4">Delete User</a>
                             </div>
                         </div>
                     </div>
@@ -246,21 +251,15 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class=" text-center">
-                                <!--<button class="btn btn-info"-->
-                                <!--        style="margin-bottom:4px;" data-toggle="modal" data-target="#addFunds">-->
-                                <!--    Add Balance-->
-                                <!--</button>-->
-                                <!--<button class="btn btn-outline-info"-->
-                                <!--        style="margin-bottom:4px;" data-toggle="modal" data-target="#subFunds">-->
-                                <!--    Remove Balance-->
-                                <!--</button>-->
+                                <button class="btn btn-info"  style="margin-bottom:4px;" data-toggle="modal" data-target="#addFunds">Add Balance </button>
+                                <button class="btn btn-outline-info" style="margin-bottom:4px;" data-toggle="modal" data-target="#subFunds">Remove Balance</button>
                                 <button class="btn btn-primary"
                                         style="margin-bottom:4px;" data-toggle="modal" data-target="#addProfit">
-                                    Add Balance
+                                    Add Profit
                                 </button>
                                 <button class="btn btn-outline-primary"
                                         style="margin-bottom:4px;" data-toggle="modal" data-target="#subProfit">
-                                    Remove Balance
+                                    Remove Profit
                                 </button>
                                 <button class="btn btn-success"
                                         style="margin-bottom:4px;" data-toggle="modal" data-target="#addRef">

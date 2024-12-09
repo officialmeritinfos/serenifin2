@@ -1,26 +1,43 @@
 @extends('home.base')
 @section('content')
-    <!-- Start Page-title Area -->
-    <div class="page-title-area bg-black">
+    <!--Page Header Start-->
+    <section class="page-header">
+        <div class="page-header__bg" style="background-image: url({{asset('home/images/backgrounds/page-header-bg.jpg')}}');">
+        </div>
+        <div class="page-header__shape-one float-bob-x-2"></div>
+        <div class="page-header__shape-2 float-bob-y">
+            <img src="{{asset('home/images/shapes/page-header-shape-2.png')}}" alt="">
+        </div>
+        <div class="page-header__shape-3 float-bob-x">
+            <img src="{{asset('home/images/shapes/page-header-shape-3.png')}}" alt="">
+        </div>
+        <div class="page-header__shape-4 float-bob-y">
+            <img src="{{asset('home/images/shapes/page-header-shape-4.png')}}" alt="">
+        </div>
         <div class="container">
-            <div class="page-title-content">
-                <h2>{{$pageName}}</h2>
-                <ul>
+            <div class="page-header__inner text-left">
+                <ul class="thm-breadcrumb list-unstyled">
                     <li><a href="{{url('/')}}">Home</a></li>
                     <li>{{$pageName}}</li>
                 </ul>
+                <h2>{{$pageName}}</h2>
             </div>
         </div>
-    </div>
-    <!-- End Page-title Area -->
+    </section>
+    <!--Page Header End-->
 
     <!-- Start About Area -->
-    <div class="about-area ptb-100">
+    <div class="about-area ptb-100 mt-5">
         <div class="container">
             <div class="row m-0">
-                <div class="col-lg-6 col-md-12 p-0">
-                    <div class="about-img">
-                        <img src="{{asset('home/img/about/about4.jpg')}}" alt="image">
+                <div class="col-xl-6">
+                    <div class="why-choose-one__left">
+                        <div class="why-choose-one__img-box wow slideInLeft" data-wow-delay="100ms"
+                             data-wow-duration="2500ms">
+                            <div class="why-choose-one__img">
+                                <img src="{{asset('home/images/resources/why-choose-one-1.jpg')}}" alt="">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -29,7 +46,7 @@
                         <span class="sub-title">ABOUT US</span>
                         <h2>Your Pathway to Financial Freedom</h2>
                         <p>
-                           Founded in 2012, we are a global investment agency helping individuals build their financial dreams into reality. From a humble beginning, we have grown to become a notable force in the investment industry with over 40K+ users.
+                           Founded in 2014, we are a global investment agency helping individuals build their financial dreams into reality. From a humble beginning, we have grown to become a notable force in the investment industry with over 40K+ users.
                         </p>
                         <p class="about-one__text-2">{{$siteName}} stands as one of the largest and most seasoned international private equity firms. Our accomplished team of investment professionals is primarily dedicated to strategic investments.</p>
                         <p class="about-one__text-2">
@@ -78,36 +95,43 @@
     </div>
     <!-- End About Area -->
 
-    <!-- Start Services Area -->
-    <div class="services-area pt-100">
+    <section class="services-page-v-2">
         <div class="container">
-            <div class="section-title">
-                <span class="sub-title">SERVICES</span>
-                <h2>Our Dedicated Services</h2>
-                <p>We offer a wide-range of services which allows our users to earn unlimitedly.</p>
+            <div class="services-page-v-2__top text-center">
+                <div class="section-title">
+                    <span class="section-title__tagline">Our Services</span>
+                    <h2 class="section-title__title"><span>Financial Solution</span></h2>
+                </div>
+                <p class="section-title__text">
+                    We offer a wide-range of services which allows our users to earn unlimitedly.
+                </p>
             </div>
-
-            <div class="services-slides owl-carousel owl-theme">
+            <div class="row">
                 @foreach($services as $service)
-                    <div class="single-services-box">
-                        <div class="image">
-                            <a href="{{route('service.details',['id'=>$service->id])}}">
-                                <img src="{{asset('home/serv/'.$service->photo)}}" alt="image">
-                            </a>
-                        </div>
-                        <div class="content">
-                            <h3><a href="{{route('service.details',['id'=>$service->id])}}">{{$service->title}}</a></h3>
-                            <p>
-                                {{$service->short}}
-                            </p>
-                            <a href="{{route('service.details',['id'=>$service->id])}}" class="default-btn">Read More <i class="ri-arrow-right-line"></i></a>
+                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="services-one__single">
+                            <div class="services-one__img">
+                                <img src="{{asset('home/serv/'.$service->photo)}}" alt="">
+                            </div>
+                            <div class="services-one__content">
+                                <div class="services-one__icon">
+                                    <span class="icon-idea"></span>
+                                </div>
+                                <h3 class="services-one__title"><a href="{{route('service.details',['id'=>$service->id])}}">{{$service->title}}</a></h3>
+                                <p class="services-one__text">
+                                    {{$service->short}}
+                                </p>
+                                <div class="services-one__arrow">
+                                    <a href="{{route('service.details',['id'=>$service->id])}}"><i class="icon-right-arrow-1"></i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach
 
             </div>
         </div>
-    </div>
-    <!-- End Services Area -->
+    </section>
+
 
 @endsection

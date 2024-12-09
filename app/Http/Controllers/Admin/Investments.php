@@ -71,10 +71,23 @@ class Investments extends Controller
         $user = Auth::user();
         $web = GeneralSetting::find(1);
 
-        $investment = Investment::where('id',$id)->first();
+        $investment = Investment::where('id',$id)->firstOrFail();
+
+        $investor = User::where('id',$investment->user)->firstOrFail();
+
+        switch ($investment->source){
+            case 'balance':
+                $investor->balance = $investor->balance + $investment->amount;
+                break;
+            default:
+                $investor->profit = $investor->profit + $investment->amount;
+                break;
+        }
+
 
         $investment->status = 3;
 
+        $investor->save();
         $investment->save();
 
         return back()->with('warning','Investment Cancelled');

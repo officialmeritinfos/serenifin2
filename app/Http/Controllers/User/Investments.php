@@ -29,7 +29,7 @@ class Investments extends Controller
             'web'=>$web,
             'user'=>$user,
             'investments'=>Investment::where('user',$user->id)->paginate(15),
-            'pageName'=>'Deposit Lists',
+            'pageName'=>'Investment Lists',
             'siteName'=>$web->name
         ];
 
@@ -44,7 +44,7 @@ class Investments extends Controller
         $dataView = [
             'web'=>$web,
             'user'=>$user,
-            'pageName'=>'New Deposit',
+            'pageName'=>'New Investment',
             'siteName'=>$web->name,
             'packages'=>Package::where('status',1)->get(),
             'coins'=>Coin::where('status',1)->get(),
@@ -61,7 +61,6 @@ class Investments extends Controller
             'amount'=>['required','numeric'],
             'account'=>['required','numeric'],
             'package'=>['required','numeric'],
-            'asset'=>['required','string']
         ]);
 
         if ($validator->fails()){
@@ -70,11 +69,6 @@ class Investments extends Controller
 
         $input = $validator->validated();
 
-        //check if the asset is supported
-        $coinExists = Coin::where('asset',strtoupper($input['asset']))->first();
-        if (empty($coinExists)){
-            return back()->with('error','Asset is not supported');
-        }
         //generate deposit reference
         $reference = $this->generateId('deposits','reference',10);
         //check if the package exists
@@ -103,9 +97,9 @@ class Investments extends Controller
                 $balance = $user->balance;
                 $source = 'balance';
                 $newBalance = [
-                    'balance'=>$balance
+                    'balance'=>$balance-$input['amount']
                 ];
-                $status=2;
+                $status=4;
                 break;
             default:
                 $balance = $user->profit;
@@ -117,8 +111,8 @@ class Investments extends Controller
                 break;
         }
 
-        if ($input['account']!=1 && $balance < $input['amount'] ){
-            return back()->with('error','Insufficient balance in profit account.');
+        if ( $balance < $input['amount'] ){
+            return back()->with('error','Insufficient balance in selected account.');
         }
 
 
@@ -140,7 +134,6 @@ class Investments extends Controller
             'nextReturn'=>$nextReturn,'currentReturn'=>0,'returnType'=>$returnType->id,
             'numberOfReturns'=>$packageExists->numberOfReturns,'status'=>$status,'duration'=>$packageExists->Duration,
             'package'=>$packageExists->id,
-            'wallet'=>$coinExists->address,'asset'=>$coinExists->asset
         ];
 
         $investment = Investment::create($dataInvestment);

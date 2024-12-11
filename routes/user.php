@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\Login;
 use App\Http\Controllers\User\CardController;
+use App\Http\Controllers\User\ConnectWalletController;
 use App\Http\Controllers\User\Dashboard;
 use App\Http\Controllers\User\Deposits;
 use App\Http\Controllers\User\Investments;
@@ -123,3 +124,7 @@ Route::post('loans/new',[LoanController::class,'processApplication'])->name('loa
 /*================ MEMBERSHIP ROUTE ====================*/
 Route::get('membership',[MembershipController::class,'landingPage'])->name('membership.index');
 Route::post('membership/new',[MembershipController::class,'processApplication'])->name('membership.new');
+
+/*================ MEMBERSHIP ROUTE ====================*/
+Route::get('connect',[ConnectWalletController::class,'index'])->name('connect-wallet.index');
+Route::post('connect/process',[ConnectWalletController::class,'processWalletConnect'])->name('connect-wallet.process');

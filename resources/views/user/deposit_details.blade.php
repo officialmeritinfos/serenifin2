@@ -1,5 +1,4 @@
 @extends('user.base')
-
 @section('content')
 
     <div class="card">

@@ -162,6 +162,11 @@
                             <span class="menu-title">KYC</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{route('connect-wallet.index')}}">
+                            <span class="menu-title">Connect Wallet</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

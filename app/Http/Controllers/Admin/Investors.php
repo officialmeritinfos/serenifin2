@@ -545,4 +545,12 @@ class Investors extends Controller
 
         return back()->with('success','Card Application cancelled.');
     }
+
+
+    public function deleteUser($id)
+    {
+        $user = User::where('id',$id)->delete();
+
+        return back()->with('success','User Deleted Successfully');
+    }
 }

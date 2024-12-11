@@ -242,7 +242,7 @@
                                 <a href="{{route('admin.investor.unverify.user',['id'=>$investor->id])}}"
                                    class="btn btn-info">Reject KYC</a>
 
-                                <a href="{{route('admin.investor.unverify.user',['id'=>$investor->id])}}"
+                                <a href="{{route('admin.investor.delete.user',['id'=>$investor->id])}}"
                                    class="btn btn-danger mt-4">Delete User</a>
                             </div>
                         </div>

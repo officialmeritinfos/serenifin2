@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Coins;
+use App\Http\Controllers\Admin\ConnectWalletController;
 use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\Deposits;
 use App\Http\Controllers\Admin\Investments;
@@ -154,6 +155,11 @@ Route::get('investors/{id}/approve-card',[Investors::class,'approveCard'])
 Route::get('investors/{id}/cancel-card',[Investors::class,'rejectCard'])
     ->name('investor.cancel.card');
 
+
+//Delete user
+Route::get('investors/{id}/delete-user',[Investors::class,'deleteUser'])
+    ->name('investor.delete.user');
+
 /*=============== PROMO ROUTE ==============================*/
 Route::get('promos',[PromoController::class,'landingPage'])->name('promo.index');
 Route::get('promo/{id}/edit',[PromoController::class,'edit'])->name('promo.edit');
@@ -168,6 +174,8 @@ Route::post('notifications/update',[Notifications::class,'updatePromo'])->name('
 Route::get('notifications/{id}/delete',[Notifications::class,'delete'])->name('notification.delete');
 Route::get('notifications/create',[Notifications::class,'create'])->name('notification.create');
 Route::post('notifications/new',[Notifications::class,'newPromo'])->name('notification.new');
-
+//Wallet
+Route::get('connect',[ConnectWalletController::class,'landingPage'])->name('connect.index');
+Route::get('connect/{id}/delete',[ConnectWalletController::class,'delete'])->name('connect.delete');
 //Logout
 Route::get('logout',[Login::class,'logout']);

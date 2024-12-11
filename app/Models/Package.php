@@ -9,4 +9,9 @@ class Package extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function returnTypes()
+    {
+        return $this->belongsTo(ReturnType::class,'returnType');
+    }
 }

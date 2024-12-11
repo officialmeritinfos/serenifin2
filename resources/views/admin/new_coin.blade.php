@@ -11,7 +11,7 @@
         </div>
         <div class="card-body row">
             <div class="col-md-12 mx-auto">
-                <form method="post" action="{{route('admin.coin.new')}}">
+                <form method="post" action="{{route('admin.coin.new')}}" enctype="multipart/form-data">
                     @csrf
                     @include('templates.notification')
                     <div class="form-row">
@@ -31,8 +31,13 @@
                             <input type="text" class="form-control" id="inputEmail4" placeholder="Address"
                                    name="address">
                         </div>
-
                         <div class="form-group col-md-6">
+                            <label for="inputEmail4">Coin Image</label>
+                            <input type="file" class="form-control" id="inputEmail4"
+                                   name="image">
+                        </div>
+
+                        <div class="form-group col-md-12">
                             <label for="inputAddress">Status</label>
                             <select type="text" class="form-control" id="inputAddress"
                                     name="status">

@@ -49,12 +49,13 @@ class Coins extends Controller
     {
         $web = GeneralSetting::where('id',1)->first();
         $user = Auth::user();
-        $validator = Validator::make($request->input(),[
+        $validator = Validator::make($request->all(),[
             'id'=>['required','numeric'],
             'name'=>['required','string'],
             'asset'=>['required','string'],
             'address'=>['nullable','string'],
             'status'=>['required','numeric'],
+            'image' => ['nullable','mimes:jpeg,png,jpg,gif,webp,svg','max:2048'],
         ]);
 
         if ($validator->fails()){
@@ -62,12 +63,25 @@ class Coins extends Controller
         }
         $input = $validator->validated();
 
+        $coin = Coin::where('id',$input['id'])->first();
+
+        if (!$coin){
+            return back()->with('error','Coin not found');
+        }
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+        }else{
+            $imageName = $coin->code;
+        }
+
 
         $data = [
-            'name'=>$input['name'],'asset'=>$input['asset'],'code'=>$input['asset'],
+            'name'=>$input['name'],'asset'=>$input['asset'],'code'=>$imageName,
             'address'=>$input['address'],'status'=>$input['status'],
         ];
-
         Coin::where('id',$input['id'])->update($data);
 
         return back()->with('success','Coin Updated');
@@ -85,7 +99,7 @@ class Coins extends Controller
 
         $dataView =[
             'siteName' => $web->name,
-            'pageName' => 'New Packages',
+            'pageName' => 'New Coin',
             'user'     =>  $user,
             'web'=>$web,
             'returnTypes'=>ReturnType::get(),
@@ -97,11 +111,12 @@ class Coins extends Controller
     {
         $web = GeneralSetting::where('id',1)->first();
         $user = Auth::user();
-        $validator = Validator::make($request->input(),[
+        $validator = Validator::make($request->all(),[
             'name'=>['required','string'],
             'asset'=>['required','string'],
             'address'=>['nullable','string'],
             'status'=>['required','numeric'],
+            'image' => ['required','mimes:jpeg,png,jpg,gif,webp,svg','max:2048'],
         ]);
 
         if ($validator->fails()){
@@ -109,9 +124,15 @@ class Coins extends Controller
         }
         $input = $validator->validated();
 
-
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads'), $imageName);
+        }else{
+            return back()->with('error','Asset Image is required');
+        }
         $data = [
-            'name'=>$input['name'],'asset'=>$input['asset'],'code'=>$input['asset'],
+            'name'=>$input['name'],'asset'=>$input['asset'],'code'=>$imageName,
             'address'=>$input['address'],'status'=>$input['status'],
         ];
 

@@ -50,6 +50,22 @@ class Investments extends Controller
             'coins'=>Coin::where('status',1)->get(),
         ];
 
+        return view('user.investment_preview',$dataView);
+    }
+    public function newInvestmentSelect($id)
+    {
+        $web = GeneralSetting::find(1);
+        $user = Auth::user();
+
+        $dataView = [
+            'web'=>$web,
+            'user'=>$user,
+            'pageName'=>'New Deposit',
+            'siteName'=>$web->name,
+            'package'=>Package::where('status',1)->where('id',$id)->firstOrFail(),
+            'coins'=>Coin::where('status',1)->get(),
+        ];
+
         return view('user.new_investments',$dataView);
     }
 

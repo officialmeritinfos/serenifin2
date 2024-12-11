@@ -1,7 +1,38 @@
 @extends('user.base')
 
 @section('content')
+<div class="container-fluid">
+    <div class="today-card-area pt-24" style="margin-top:-3rem;">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-sm-6">
+                    <div class="single-today-card d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <span class="today">Account Balance</span>
+                            <h6>${{number_format($user->balance,2)}}</h6>
+                        </div>
 
+                        <div class="flex-shrink-0 align-self-center">
+                            <img src="{{asset('dashboard/user/images/icon/user.png')}}" alt="Images">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="single-today-card d-flex align-items-center">
+                        <div class="flex-grow-1">
+                            <span class="today">Loan Balance</span>
+                            <h6>${{number_format($user->loan,2)}}</h6>
+                        </div>
+
+                        <div class="flex-shrink-0 align-self-center">
+                            <img src="{{asset('dashboard/user/images/icon/user.png')}}" alt="Images">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-xl-7 mx-auto">
             {{--            <h6 class="mb-0 text-uppercase">{{$pageName}}</h6>--}}
@@ -99,5 +130,5 @@
             </div>
         </div>
     </div>
-
+</div>
 @endsection

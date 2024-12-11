@@ -17,31 +17,32 @@
                         @csrf
                         @include('templates.notification')
                         <div class="form-group col-md-12">
+                            <label for="inputAddress2">Package Name</label>
+                            <input type="text" class="form-control form-control-lg" id="inputAddress2"
+                                   placeholder="Enter Amount to Invest" name="packageName" value="{{$package->name}}" readonly>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress2">Minimum Amount($)</label>
+                            <input type="text" class="form-control form-control-lg" id="inputAddress2"
+                                   placeholder="Enter Amount to Invest" name="packageName" value="{{$package->minAmount}}" readonly>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputAddress2">Maximum Amount($)</label>
+                            <input type="text" class="form-control form-control-lg" id="inputAddress2"
+                                   placeholder="Enter Amount to Invest" name="packageName" value="{{($package->isFixed==1)?'Fixed':$package->maxAmount}}" readonly>
+                        </div>
+                        <div class="form-group col-md-12">
                             <label for="inputAddress2">Amount ($)</label>
                             <input type="number" class="form-control form-control-lg" id="inputAddress2"
                                    placeholder="Enter Amount to Invest" name="amount">
                         </div>
-                        <div class="form-group col-md-12">
+                        <div class="form-group col-md-12" style="display: none;">
                             <label for="inputAddress2">Package</label>
-                            <select type="number" class="form-control form-control-lg" id="inputAddress2"
-                                    name="package">
-                                <option value="">Select a Package</option>
-                                @foreach($packages as $package)
-                                    <option value="{{$package->id}}">
-                                        {{$package->name}}
-                                        (
-                                        ${{number_format($package->minAmount,2)}}
-                                        -
-                                        @if($package->isUnlimited ==1)
-                                            Unlimited
-                                        @else
-                                            ${{number_format($package->maxAmount)}}
-                                        @endif
-                                    )
-                                    </option>
-                                @endforeach
-                            </select>
+                            <input type="number" class="form-control form-control-lg" id="inputAddress2"
+                                   placeholder="Enter Amount to Invest" name="package" value="{{$package->id}}">
                         </div>
+
                         <div class="form-group col-md-12 mx-auto">
                             <label for="inputAddress2">Account</label>
                             <select type="number" class="form-control form-control-lg" id="inputAddress2"

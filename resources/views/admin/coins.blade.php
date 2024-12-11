@@ -19,6 +19,7 @@
                         <th>Name</th>
                         <th>Asset</th>
                         <th>Address</th>
+                        <th>Image</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -30,6 +31,9 @@
                             <td>{{$coin->name}}</td>
                             <td>{{$coin->asset}}</td>
                             <td>{{$coin->address}}</td>
+                            <td>
+                                <img src="{{ asset('uploads/'.$coin->code) }}" style="width: 100px;">
+                            </td>
                             <td>
                                 @switch($coin->status)
                                     @case(1)
@@ -58,6 +62,7 @@
                         <th>Name</th>
                         <th>Asset</th>
                         <th>Address</th>
+                        <th>Image</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>

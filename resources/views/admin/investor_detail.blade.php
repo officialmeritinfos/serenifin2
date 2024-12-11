@@ -279,12 +279,20 @@
                                 </button>
 
                                 <button class="btn btn-info"
-                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#addLoan">
+                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#addBonus">
                                     Add Bonus
                                 </button>
                                 <button class="btn btn-outline-info"
-                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#subLoan">
+                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#subBonus">
                                     Subtract Bonus
+                                </button>
+                                <button class="btn btn-info"
+                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#addLoan">
+                                    Add Loan
+                                </button>
+                                <button class="btn btn-outline-info"
+                                        style="margin-bottom:4px;" data-toggle="modal" data-target="#subLoan">
+                                    Subtract Loan
                                 </button>
                             </div>
                         </div>
@@ -872,12 +880,84 @@
     </div>
 
 
-    <div class="modal fade" id="addLoan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="addBonus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Bonus</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{route('admin.investor.addBonus')}}">
+                        @csrf
+                        @include('templates.notification')
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12">
+                                <label for="inputEmail4">Amount</label>
+                                <input type="number" class="form-control" id="inputEmail4" placeholder="Amount"
+                                       name="amount">
+                            </div>
+                            <div class="form-group col-md-12" style="display: none;">
+                                <label for="inputEmail4">Id</label>
+                                <input type="text" class="form-control" id="inputEmail4"
+                                       name="id" value="{{$investor->id}}">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Add</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="subBonus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Subtract Bonus</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="{{route('admin.investor.subBonus')}}">
+                        @csrf
+                        @include('templates.notification')
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12">
+                                <label for="inputEmail4">Amount</label>
+                                <input type="number" class="form-control" id="inputEmail4" placeholder="Amount"
+                                       name="amount">
+                            </div>
+                            <div class="form-group col-md-12" style="display: none;">
+                                <label for="inputEmail4">Id</label>
+                                <input type="text" class="form-control" id="inputEmail4"
+                                       name="id" value="{{$investor->id}}">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Subtract</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="addLoan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Loan</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -913,7 +993,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Subtract Bonus</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Subtract Loan</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -942,4 +1022,6 @@
                 </div>
             </div>
         </div>
-    </div>@endsection
+    </div>
+
+@endsection

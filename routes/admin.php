@@ -127,10 +127,16 @@ Route::get('investors/{id}/deactivate-loan',[Investors::class,'deactivateLoan'])
     ->name('investor.deactivate.loan');
 Route::get('investors/{id}/activate-loan',[Investors::class,'activateLoan'])
     ->name('investor.activate.loan');
-Route::post('investors/addLoan',[Investors::class,'addLoan'])
+Route::post('investors/add-bonus',[Investors::class,'addBonus'])
+    ->name('investor.addBonus');
+Route::post('investors/sub-bonus',[Investors::class,'subBonus'])
+    ->name('investor.subBonus');
+
+Route::post('investors/add-loan',[Investors::class,'addLoan'])
     ->name('investor.addLoan');
-Route::post('investors/subLoan',[Investors::class,'subLoan'])
+Route::post('investors/sub-loan',[Investors::class,'subLoan'])
     ->name('investor.subLoan');
+
 Route::get('investors/{id}/login',[Investors::class,'loginUser'])->name('investor.login');
 
 

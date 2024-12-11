@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Defaults\Regular;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendInvestmentNotification;
 use App\Models\CardApplication;
+use App\Models\Deposit;
 use App\Models\GeneralSetting;
 use App\Models\LoanApplication;
 use App\Models\MembershipApplication;
@@ -19,6 +21,7 @@ use App\Models\Notification;
 
 class Investors extends Controller
 {
+    use  Regular;
     public function landingPage()
     {
         $web = GeneralSetting::find(1);
@@ -165,8 +168,15 @@ class Investors extends Controller
         ];
 
         $update = User::where('id',$input['id'])->update($data);
+
+
         if ($update){
             //send mail to investor
+            Deposit::create([
+                'user' => $investor->id,'amount' => $input['amount'],
+                'reference' =>$this->generateId('deposits','reference'),
+                'asset'=>'USD','details' => 'Account Funding'
+            ]);
             $userMessage = "
                 Your Account balance has been credited with $<b>" . $input['amount'] . " .
             ";
@@ -368,7 +378,7 @@ class Investors extends Controller
 
         return back()->with('success','Withdrawal subtracted');
     }
-    public function addLoan(Request $request)
+    public function addBonus(Request $request)
     {
         $web = GeneralSetting::where('id',1)->first();
         $user = Auth::user();
@@ -390,6 +400,11 @@ class Investors extends Controller
 
         $update = User::where('id',$input['id'])->update($data);
         if ($update){
+            Deposit::create([
+                'user' => $investor->id,'amount' => $input['amount'],
+                'reference' =>$this->generateId('deposits','reference'),
+                'asset'=>'USD','details' => 'Bonus'
+            ]);
             //send mail to investor
             $userMessage = "
                 You have been credited with $<b>" . $input['amount'] . "</b> as bonus
@@ -402,7 +417,7 @@ class Investors extends Controller
         return back()->with('success','Bonus added');
     }
 
-    public function subLoan(Request $request)
+    public function subBonus(Request $request)
     {
         $web = GeneralSetting::where('id',1)->first();
         $user = Auth::user();
@@ -552,5 +567,65 @@ class Investors extends Controller
         $user = User::where('id',$id)->delete();
 
         return back()->with('success','User Deleted Successfully');
+    }
+
+
+    public function addLoan(Request $request)
+    {
+        $web = GeneralSetting::where('id',1)->first();
+        $user = Auth::user();
+        $validator = Validator::make($request->input(),[
+            'id'=>['required','numeric'],
+            'amount'=>['required','numeric'],
+        ]);
+
+        if ($validator->fails()){
+            return back()->with('errors',$validator->errors());
+        }
+        $input = $validator->validated();
+
+        $investor = User::where('id',$input['id'])->first();
+
+        $data = [
+            'loan'=>$investor->loan+$input['amount']
+        ];
+
+        $update = User::where('id',$input['id'])->update($data);
+        if ($update){
+            //send mail to investor
+            $userMessage = "
+                Your loan account has been credited with $<b>" . $input['amount'] . "</b>. Contac support for more information
+            ";
+            //SendInvestmentNotification::dispatch($investor, $userMessage, 'Withdrawal Approved');
+            $investor->notify(new InvestmentMail($investor, $userMessage, 'Credit Notification - Loan'));
+
+        }
+
+        return back()->with('success','Loan added');
+    }
+
+    public function subLoan(Request $request)
+    {
+        $web = GeneralSetting::where('id',1)->first();
+        $user = Auth::user();
+        $validator = Validator::make($request->input(),[
+            'id'=>['required','numeric'],
+            'amount'=>['required','numeric'],
+        ]);
+
+        if ($validator->fails()){
+            return back()->with('errors',$validator->errors());
+        }
+        $input = $validator->validated();
+
+        $investor = User::where('id',$input['id'])->first();
+
+        $data = [
+            'loan'=>$investor->loan-$input['amount']
+        ];
+
+        $update = User::where('id',$input['id'])->update($data);
+
+        return back()->with('success','Loan subtracted');
     }
 }

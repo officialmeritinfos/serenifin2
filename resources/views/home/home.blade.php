@@ -22,7 +22,7 @@
                 <div class="swiper-slide">
                     <div class="fullscreen-bg">
                         <video autoplay muted loop playsinline class="image-layer fullscreen-bg__video" >
-                            <source src="{{ asset('home/images/background.mp4') }}" type="video/mp4">
+                            <source src="{{ asset('home/images/background1.mp4') }}" type="video/mp4">
                             Your browser does not support HTML5 video.
                         </video>
                     </div>

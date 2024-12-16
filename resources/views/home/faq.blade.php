@@ -189,7 +189,7 @@
                             <div id="collapse-2-7" class="collapse" aria-labelledby="heading-2-7"
                                  data-parent="#accordion-2">
                                 <div class="card-body">
-                                    <p>No you cannot have more than one account only investors on the vip plan are allowed to do so</p>
+                                    <p>No you cannot have more than one account, only VIP investors are allowed to do so</p>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +207,8 @@
                             <div id="collapse-2-8" class="collapse" aria-labelledby="heading-2-8"
                                  data-parent="#accordion-2">
                                 <div class="card-body">
-                                    <p>Yes we are officially and properly registered with the United State . our company registration number is USFDAISO34847676   and registered with the name {{$siteName}}</p>
+                                    <p>Yes we are officially and properly registered with Canada.
+                                        Our company registration number is {{ env('COMPANY_LICENSE') }}   and registered with the name {{$siteName}}</p>
                                 </div>
                             </div>
                         </div>
@@ -225,7 +226,7 @@
                             <div id="collapse-2-9" class="collapse" aria-labelledby="heading-2-9"
                                  data-parent="#accordion-2">
                                 <div class="card-body">
-                                    <p>Yes, you can have multiple accounts</p>
+                                    <p>No, except you are a VIP Investor</p>
                                 </div>
                             </div>
                         </div>
@@ -243,7 +244,7 @@
                             <div id="collapse-2-10" class="collapse" aria-labelledby="heading-2-10"
                                  data-parent="#accordion-2">
                                 <div class="card-body">
-                                    <p>You can make as many deposit as you want on any of our investment plans except theHERCULES ARBITRAGE PLAN where you can only invest two times. And you can only withdraw once in the HERCULES ARBITRAGE PLAN.</p>
+                                    <p>You can make as many deposit as you want on any of our investment plans.</p>
                                 </div>
                             </div>
                         </div>

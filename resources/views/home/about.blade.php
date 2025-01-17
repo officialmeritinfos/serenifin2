@@ -1,30 +1,18 @@
 @extends('home.base')
 @section('content')
-    <!--Page Header Start-->
-    <section class="page-header">
-        <div class="page-header__bg" style="background-image: url({{asset('home/images/backgrounds/page-header-bg.jpg')}}');">
-        </div>
-        <div class="page-header__shape-one float-bob-x-2"></div>
-        <div class="page-header__shape-2 float-bob-y">
-            <img src="{{asset('home/images/shapes/page-header-shape-2.png')}}" alt="">
-        </div>
-        <div class="page-header__shape-3 float-bob-x">
-            <img src="{{asset('home/images/shapes/page-header-shape-3.png')}}" alt="">
-        </div>
-        <div class="page-header__shape-4 float-bob-y">
-            <img src="{{asset('home/images/shapes/page-header-shape-4.png')}}" alt="">
-        </div>
-        <div class="container">
-            <div class="page-header__inner text-left">
-                <ul class="thm-breadcrumb list-unstyled">
+    <!-- Page Header Section -->
+    <div class="page_header">
+        <div class="page_header_content">
+            <div class="container">
+                <h2 class="heading">{{$pageName}}</h2>
+                <ul class="breadcrumb">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li>{{$pageName}}</li>
+                    <li class="active">{{$pageName}}</li>
                 </ul>
-                <h2>{{$pageName}}</h2>
             </div>
         </div>
-    </section>
-    <!--Page Header End-->
+    </div>
+    <!-- Page Header Section -->
 
     <!-- Start About Area -->
     <div class="about-area ptb-100 mt-5">
@@ -35,7 +23,7 @@
                         <div class="why-choose-one__img-box wow slideInLeft" data-wow-delay="100ms"
                              data-wow-duration="2500ms">
                             <div class="why-choose-one__img">
-                                <img src="{{asset('home/images/resources/why-choose-one-1.jpg')}}" alt="">
+                                <img src="{{asset('home/images/background/9.jpg')}}" alt="">
                             </div>
                         </div>
                     </div>
@@ -46,7 +34,8 @@
                         <span class="sub-title">ABOUT US</span>
                         <h2>Your Pathway to Financial Freedom</h2>
                         <p>
-                           Founded in 2014, we are a global investment agency helping individuals build their financial dreams into reality. From a humble beginning, we have grown to become a notable force in the investment industry with over 40K+ users.
+                           Founded in 2019, we are a global investment agency helping individuals build their financial dreams into reality.
+                            From a humble beginning, we have grown to become a notable force in the investment industry with over 40K+ users.
                         </p>
                         <p class="about-one__text-2">{{$siteName}} stands as one of the largest and most seasoned international private equity firms. Our accomplished team of investment professionals is primarily dedicated to strategic investments.</p>
                         <p class="about-one__text-2">
@@ -95,41 +84,53 @@
     </div>
     <!-- End About Area -->
 
-    <section class="services-page-v-2">
+    <!-- Business Section -->
+    <section class="business-section-three pb-0">
+        <div class="image-layer" style="background-image: url({{asset('home/images/background/19.jpg')}})"></div>
         <div class="container">
-            <div class="services-page-v-2__top text-center">
-                <div class="section-title">
-                    <span class="section-title__tagline">Our Services</span>
-                    <h2 class="section-title__title"><span>Financial Solution</span></h2>
-                </div>
-                <p class="section-title__text">
-                    We offer a wide-range of services which allows our users to earn unlimitedly.
-                </p>
+            <!-- Service Sec  -->
+            <!-- Sec Title -->
+            <div class="sec-title centered">
+                <div class="title">INTELLIGENT DECISION MAKING</div>
+                <h1>Providing Best Services</h1>
+                <div class="separator"></div>
             </div>
-            <div class="row">
-                @foreach($services as $service)
-                    <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="100ms">
-                        <div class="services-one__single">
-                            <div class="services-one__img">
-                                <img src="{{asset('home/serv/'.$service->photo)}}" alt="">
-                            </div>
-                            <div class="services-one__content">
-                                <div class="services-one__icon">
-                                    <span class="icon-idea"></span>
+            <div class="inner-column">
+                <div class="row clearfix">
+                    @foreach($services as $service)
+                        <!-- Service Block -->
+                        <div class="service-block-style-two col-lg-4 col-md-6 col-sm-12">
+                            <div class="inner-box bg-white">
+                                <div class="hidden-image" style="background-image: url('{{asset('home/images/services/bg-hover-1.png')}}');"></div>
+                                <div class="icon">
+                                    <img src="{{asset('home/serv/'.$service->photo)}}" alt="">
                                 </div>
-                                <h3 class="services-one__title"><a href="{{route('service.details',['id'=>$service->id])}}">{{$service->title}}</a></h3>
-                                <p class="services-one__text">
+                                <h5><a href="{{route('service.details',['id'=>$service->id])}}">{{$service->title}}</a></h5>
+                                <div class="text">
                                     {{$service->short}}
-                                </p>
-                                <div class="services-one__arrow">
-                                    <a href="{{route('service.details',['id'=>$service->id])}}"><i class="icon-right-arrow-1"></i></a>
                                 </div>
+                                <a href="{{route('service.details',['id'=>$service->id])}}" class="read-more"><span><img src="{{asset('home/images/services/arrow-right.png')}}" alt="arrow"></span> Read More</a>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
+                    <!-- Service Block -->
+                    <div class="service-block-style-two all-services-link col-lg-4 col-md-6 col-sm-12">
+                        <div class="inner-box" style="background-image: url('{{asset('home/images/services/bg-2.png')}}');">
+                            <h5>Intrigued by our vast services and sectors served? Join Today and start benefiting</h5>
+                            <a href="{{route('register')}}" class="btn btn-two">
+										<span class="btn-wrap">
+											<span class="text-one">Get Started</span>
+											<span class="text-two">Get Started</span>
+										</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
+
+
         </div>
     </section>
 

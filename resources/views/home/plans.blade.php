@@ -115,31 +115,19 @@
         </style>
     @endpush
 
-    <!--Page Header Start-->
-    <section class="page-header">
-        <div class="page-header__bg" style="background-image: url({{asset('home/images/backgrounds/page-header-bg.jpg')}}');">
-        </div>
-        <div class="page-header__shape-one float-bob-x-2"></div>
-        <div class="page-header__shape-2 float-bob-y">
-            <img src="{{asset('home/images/shapes/page-header-shape-2.png')}}" alt="">
-        </div>
-        <div class="page-header__shape-3 float-bob-x">
-            <img src="{{asset('home/images/shapes/page-header-shape-3.png')}}" alt="">
-        </div>
-        <div class="page-header__shape-4 float-bob-y">
-            <img src="{{asset('home/images/shapes/page-header-shape-4.png')}}" alt="">
-        </div>
-        <div class="container">
-            <div class="page-header__inner text-left">
-                <ul class="thm-breadcrumb list-unstyled">
-                    <li><a href="{{url('/')}}">Home</a></li>
-                    <li>{{$pageName}}</li>
-                </ul>
-                <h2>{{$pageName}}</h2>
+        <!-- Page Header Section -->
+        <div class="page_header">
+            <div class="page_header_content">
+                <div class="container">
+                    <h2 class="heading">{{$pageName}}</h2>
+                    <ul class="breadcrumb">
+                        <li><a href="{{url('/')}}">Home</a></li>
+                        <li class="active">{{$pageName}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </section>
-    <!--Page Header End-->
+        <!-- Page Header Section -->
 
     <div class="pricing-area" style="margin-bottom: 5rem;margin-top: 5rem;">
         <div class="container">

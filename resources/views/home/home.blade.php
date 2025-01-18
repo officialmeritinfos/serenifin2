@@ -406,9 +406,9 @@
 											</span>
                                 </a>
                                 <!-- Play Box -->
-                                {{--                                <a href="https://www.youtube.com/watch?v=kxPCFljwJws" class="lightbox-video play-box">--}}
-                                {{--                                    <span><i  class="fa fa-play"></i></span> Watch Video--}}
-                                {{--                                </a>--}}
+                                <a href="https://www.youtube.com/watch?v=Ay-nR9LQoV0" class="lightbox-video play-box">
+                                    <span><i  class="fa fa-play"></i></span> Watch Video
+                                </a>
                             </div>
 
                         </div>

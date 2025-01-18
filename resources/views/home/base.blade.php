@@ -33,23 +33,12 @@
         <div class="preloader-inner">
             <div class="spinner"></div>
             <div class="loading-text">
-                <span data-preloader-text="J" class="characters">J</span>
 
-                <span data-preloader-text="A" class="characters">A</span>
+                @foreach(str_split($siteName) as $letter)
+                    <span data-preloader-text="{{$letter}}" class="characters">{{$letter}}</span>
+                @endforeach
 
-                <span data-preloader-text="C" class="characters">C</span>
 
-                <span data-preloader-text="K" class="characters">K</span>
-
-                <span data-preloader-text="C" class="characters">C</span>
-
-                <span data-preloader-text="E" class="characters">E</span>
-
-                <span data-preloader-text="R" class="characters">R</span>
-
-                <span data-preloader-text="R" class="characters">R</span>
-
-                <span data-preloader-text="A" class="characters">A</span>
             </div>
         </div>
     </div>
